@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description" content="Supporting media and experimental evidence for the MEng thesis Dynamic Video Pose Estimation for Adaptive Robotic Control Systems.">
+ <title>Dynamic Video Pose Estimation for Adaptive Robotic Control Systems</title>
+
+ <style>
+ :root {
+ --su-maroon: #61223B;
+ --su-maroon-dark: #48172B;
+ --su-gold: #B79962;
+ --ink: #24292f;
+ --muted: #667085;
+ --line: #d9dee5;
+ --soft: #f6f7f9;
+ --page: 1120px;
+ }
+
+ * {
+ box-sizing: border-box;
+ }
+
+ html {
+ scroll-behavior: smooth;
+ }
+
+ body {
+ margin: 0;
+ background: #ffffff;
+ color: var(--ink);
+ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+ font-size: 16px;
+ line-height: 1.65;
+ }
+
+ .su-header {
+ width: 100%;
+ margin: 0;
+ background: linear-gradient(135deg, var(--su-maroon) 0%, var(--su-maroon-dark) 100%);
+ border-top: 6px solid var(--su-gold);
+ color: #ffffff;
+ }
+
+ .su-header__inner {
+ width: min(100% - 40px, var(--page));
+ margin: 0 auto;
+ padding: 30px 0 32px;
+ display: grid;
+ grid-template-columns: 138px minmax(0, 1fr);
+ gap: 30px;
+ align-items: center;
+ }
+
+ .su-logo {
+ background: #ffffff;
+ padding: 12px;
+ border-radius: 4px;
+ box-shadow: 0 7px 22px rgba(0,0,0,.16);
+ }
+
+ .su-logo img {
+ display: block;
+ width: 100%;
+ height: auto;
+ }
+
+ .eyebrow {
+ margin: 0 0 8px;
+ color: #ead8ad;
+ font-size: .78rem;
+ font-weight: 750;
+ letter-spacing: .1em;
+ text-transform: uppercase;
+ }
+
+ .hero-title {
+ margin: 0;
+ max-width: 900px;
+ color: #ffffff;
+ font-size: clamp(1.8rem, 3.7vw, 2.8rem);
+ font-weight: 720;
+ line-height: 1.08;
+ letter-spacing: -.025em;
+ }
+
+ .hero-meta {
+ margin: 14px 0 0;
+ color: rgba(255,255,255,.93);
+ font-size: .98rem;
+ }
+
+ .hero-note {
+ margin: 4px 0 0;
+ color: rgba(255,255,255,.72);
+ font-size: .85rem;
+ }
+
+ main {
+ width: min(100% - 40px, var(--page));
+ margin: 0 auto;
+ padding: 38px 0 72px;
+ }
+
+ main > p:first-child {
+ margin-top: 0;
+ font-size: 1.05rem;
+ }
+
+ h2 {
+ scroll-margin-top: 18px;
+ margin: 3.4rem 0 1rem;
+ padding-bottom: .48rem;
+ border-bottom: 2px solid #eadde2;
+ color: var(--ink);
+ font-size: 1.62rem;
+ line-height: 1.25;
+ }
+
+ h3 {
+ margin: 2.2rem 0 .8rem;
+ color: #35313a;
+ }
+
+ p {
+ margin: .8rem 0 1rem;
+ }
+
+ a {
+ color: var(--su-maroon);
+ text-decoration-thickness: 1px;
+ text-underline-offset: 2px;
+ }
+
+ a:hover {
+ color: var(--su-maroon-dark);
+ }
+
+ hr {
+ margin: 2.6rem 0;
+ border: 0;
+ border-top: 1px solid var(--line);
+ }
+
+ ol, ul {
+ padding-left: 1.35rem;
+ }
+
+ li + li {
+ margin-top: .32rem;
+ }
+
+ img {
+ max-width: 100%;
+ height: auto;
+ }
+
+ video {
+ display: block;
+ width: 100%;
+ max-width: 100%;
+ margin: .8rem 0 1.4rem;
+ border-radius: 6px;
+ background: #000;
+ box-shadow: 0 4px 16px rgba(0,0,0,.10);
+ }
+
+ table {
+ width: 100%;
+ margin: 1.25rem 0 1.7rem;
+ border-collapse: collapse;
+ font-size: .94rem;
+ }
+
+ th {
+ background: var(--su-maroon);
+ color: #ffffff;
+ text-align: left;
+ font-weight: 650;
+ }
+
+ th, td {
+ padding: .72rem .78rem;
+ border: 1px solid var(--line);
+ vertical-align: top;
+ }
+
+ tbody tr:nth-child(even) {
+ background: #fafafa;
+ }
+
+ table img {
+ display: block;
+ width: 100%;
+ }
+
+ details {
+ margin: .9rem 0;
+ border: 1px solid var(--line);
+ border-radius: 7px;
+ background: #ffffff;
+ overflow: hidden;
+ }
+
+ summary {
+ cursor: pointer;
+ padding: .9rem 1rem;
+ background: var(--soft);
+ color: var(--su-maroon);
+ font-weight: 650;
+ }
+
+ details > p,
+ details > video {
+ width: calc(100% - 2rem);
+ margin-left: 1rem;
+ margin-right: 1rem;
+ }
+
+ #contents + ol {
+ columns: 2;
+ column-gap: 2.5rem;
+ margin-top: 1rem;
+ }
+
+ .page-footer {
+ margin-top: 4rem;
+ padding-top: 1.2rem;
+ border-top: 1px solid var(--line);
+ color: var(--muted);
+ font-size: .86rem;
+ }
+
+ @media (max-width: 760px) {
+ .su-header__inner {
+ grid-template-columns: 92px minmax(0, 1fr);
+ gap: 18px;
+ padding: 22px 0 24px;
+ }
+
+ .su-logo {
+ padding: 8px;
+ }
+
+ #contents + ol {
+ columns: 1;
+ }
+
+ table {
+ display: block;
+ overflow-x: auto;
+ }
+
+ th, td {
+ min-width: 125px;
+ }
+ }
+
+ @media (max-width: 520px) {
+ .su-header__inner {
+ grid-template-columns: 1fr;
+ }
+
+ .su-logo {
+ width: 104px;
+ }
+
+ .hero-title {
+ font-size: 1.65rem;
+ }
+ }
+ </style>
+</head>
+
+<body>
+ <header class="su-header">
+ <div class="su-header__inner">
+ <div class="su-logo">
+ <img src="assets/branding/stellenbosch_university_logo.png"
+ alt="Stellenbosch University logo">
+ </div>
+
+ <div>
+ <p class="eyebrow">Master of Engineering · Electronic Engineering</p>
+ <h1 class="hero-title">Dynamic Video Pose Estimation for Adaptive Robotic Control Systems</h1>
+ <p class="hero-meta">Dean Stokes · Stellenbosch University · Supervisor: Dr William Duckitt</p>
+ <p class="hero-note">Academic thesis project · Faculty of Engineering</p>
+ </div>
+ </div>
+ </header>
+
+ <main>
+<p>This page contains the images and videos used to support the thesis.
+All manipulation and policy results shown here were obtained in Isaac Sim. The
+trained policies were not transferred to the physical arm.
+All experimental content is derived directly from the recorded data. Trials,
+outcomes and measured signals are not altered; any re-rendering, synchronisation
+or playback-rate changes are stated explicitly below.</p>
+<hr/>
+<h2 id="contents">Contents</h2>
+<ol>
+<li><a href="#1-the-simulated-task">The simulated task</a></li>
+<li><a href="#2-teleoperation">Teleoperation</a></li>
+<li><a href="#3-retargeting">Retargeting</a></li>
+<li><a href="#4-the-policies">The policies</a></li>
+<li><a href="#5-best-performing-policy">Best-performing policy: Policy D</a></li>
+<li><a href="#6-selected-trials-discussed-in-the-thesis">Selected trials discussed in the thesis</a></li>
+<li><a href="#7-how-the-videos-were-made">How the videos were made</a></li>
+</ol>
+<hr/>
+<h2 id="1-the-simulated-task">1. The simulated task</h2>
+<p>A 6-DOF desktop arm with a parallel gripper, simulated in Isaac Sim, must pick
+up a 30 mm cube from a table. Two cameras record each episode at 256 × 256:</p>
+<ul>
+<li>a <strong>head camera</strong> placed at the estimated eye position of the
+completed robot, looking down over the table;</li>
+<li>a <strong>wrist camera</strong> mounted on the gripper, looking past the jaws.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Simulated scene</th>
+<th>Head camera</th>
+<th>Wrist camera</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="Simulated scene" src="assets/figures/scene_overview_perspective.png"/></td>
+<td><img alt="Head camera view" src="assets/figures/scene_overview_head_camera.png"/></td>
+<td><img alt="Wrist camera view" src="assets/figures/scene_overview_wrist_camera.png"/></td>
+</tr>
+</tbody>
+</table>
+<p><em>The arm is in a recorded pose from an evaluation trial (policy D, trial 19,
+7.8 s, just before its successful close). The camera views are rendered at
+1024 × 1024 through the recording cameras, so they match the 256 × 256 frames
+the policies receive in position and field of view. The scene has no floor or
+surroundings, so empty space renders black, as in every recorded frame.</em></p>
+<hr/>
+<h2 id="2-teleoperation">2. Teleoperation</h2>
+<p>The operator stands in front of a stereo pair of webcams. Their right arm is
+reconstructed in 3D, without markers, and retargeted onto the robot's joints
+in real time. Closing the hand into a fist closes the gripper and opening it
+opens the gripper. The command is binary, with a gap between the closing and
+opening thresholds so that a half-closed hand does not make the gripper
+chatter.</p>
+<p><strong>The demonstration set:</strong></p>
+<ul>
+<li>55 attempts were made; 50 succeeded (91%) and were saved;</li>
+<li>the saved demonstrations totalled 19.4 minutes, with durations from
+10.1 s to 47.5 s and a median of 20.9 s;</li>
+<li>48 demonstrations (13,343 frames) passed dataset validation and were used
+for training. One was rejected for a joint-limit violation and one for
+0.32 s of dropped frames.</li>
+</ul>
+<p>Three demonstrations from the recorded set. Each video shows, at the same moment:</p>
+<ul>
+<li><strong>top left:</strong> the operator, filmed by the left camera, with the tracked
+skeleton;</li>
+<li><strong>top right:</strong> the operator's screen, i.e. the Isaac Sim viewport they
+watched while operating, <strong>re-rendered</strong> from the recording (see below);</li>
+<li><strong>bottom:</strong> the robot's head and wrist cameras, as recorded;</li>
+<li><strong>strip:</strong> the time, the measured gripper opening and the cube's height.</li>
+</ul>
+<p><strong>Demonstration 47</strong> (10.1 s, cube on the robot's left)
+<video controls="" preload="metadata" src="assets/videos/teleop_demo47.mp4" width="100%"></video></p>
+<p><strong>Demonstration 2</strong> (19.7 s, cube on the robot's right)
+<video controls="" preload="metadata" src="assets/videos/teleop_demo02.mp4" width="100%"></video></p>
+<p><strong>Demonstration 39</strong> (19.0 s, cube near the centre)
+<video controls="" preload="metadata" src="assets/videos/teleop_demo39.mp4" width="100%"></video></p>
+<p><em>The operator's screen was not recorded during the session. It is re-rendered
+here from the same viewport camera (the fixed front view the session log shows
+was in use). Every frame, the arm's joints, the gripper opening and the cube's
+position are set to the recorded values. The cube's orientation was not
+recorded, so it is drawn square to the table. The grasp-guide panel the
+operator also had on screen is not shown.</em></p>
+<p><img alt="Operator and simulated robot at four moments of one demonstration" src="assets/figures/teleop_following.png"/>
+<em>Operator (top) and robot head camera with wrist inset (bottom) at four moments
+of demonstration 2.</em></p>
+<hr/>
+<h2 id="3-retargeting">3. Retargeting</h2>
+<p><img alt="Operator and retargeted robot at four arm configurations" src="assets/figures/retargeting_pose_examples.png"/>
+<em>Four arm configurations from one recording, chosen by pose (never by
+error). Each shows the operator with the reconstructed landmarks projected
+back into the camera image, beside the robot posed by the final joint-centre
+retargeting of that frame. In all four frames the arm and hand landmarks were
+freshly reconstructed, not carried over from an earlier frame.</em></p>
+<p><img alt="Reconstructed operator angles against commanded robot joints" src="assets/figures/joint_tracking_combined.png"/>
+<em>Reconstructed operator angles (blue) against the commanded robot joints
+(dashed), with the live command filter at its demonstration settings (time
+constant 0.2 s, 2.5 rad/s). Grey bands mark frames where the whole skeleton
+was rejected and the previous one reused. The spike at about 4 s in (d) is
+the command crossing between two elbow configurations that point the forearm
+the same way; the thesis discusses it.</em></p>
+<hr/>
+<h2 id="4-the-policies">4. The policies</h2>
+<p>Five ACT policy configurations were trained using the same ACT implementation,
+random seed (1000), batch size and action-chunk length (24). The number of
+demonstrations, training duration and camera inputs were varied as shown below.
+Temporal ensembling was disabled. Each policy was evaluated on 20 trials, one
+per cube position on a 5 × 4 grid: −96 to +96 mm across, 266 to 304 mm forward
+of the shoulder. A trial succeeds when the cube is lifted at least 40 mm and
+held for 0.5 s within 30 s.</p>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Demonstrations</th>
+<th>Cameras</th>
+<th>Training steps</th>
+<th>Success</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>11</td>
+<td>head + wrist</td>
+<td>50k</td>
+<td>11/20</td>
+</tr>
+<tr>
+<td>B</td>
+<td>24 retained from first 25 recorded</td>
+<td>head + wrist</td>
+<td>50k</td>
+<td>13/20</td>
+</tr>
+<tr>
+<td>C</td>
+<td>48</td>
+<td>head + wrist</td>
+<td>50k</td>
+<td>16/20</td>
+</tr>
+<tr>
+<td>D</td>
+<td>48</td>
+<td>head + wrist</td>
+<td>100k</td>
+<td>19/20</td>
+</tr>
+<tr>
+<td>E</td>
+<td>48</td>
+<td><strong>head only</strong></td>
+<td>100k</td>
+<td>15/20</td>
+</tr>
+</tbody>
+</table>
+<p><em>The demonstration counts shown in the table refer to the validated training
+set used for the main evaluation. Across Policies A–D, which use both camera
+views, 59 of 80 evaluation trials succeeded (74%).</em></p>
+<p><strong>Success at each cube position</strong>, seen from above (forward of the shoulder
+up the page, the operator's left on the left).</p>
+<table>
+<thead>
+<tr>
+<th>Policies A–D pooled (out of 4)</th>
+<th>Policy E (one trial)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="Policies A–D success grid" src="assets/figures/policy_grid_final_AD.png"/></td>
+<td><img alt="Policy E success grid" src="assets/figures/policy_grid_final_E.png"/></td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="5-best-performing-policy">5. Best-performing policy: Policy D</h2>
+<p>Policy D was the strongest policy in the evaluation. It was trained for
+100,000 steps using all 48 validated demonstrations and received both the head-
+and wrist-camera observations. It succeeded in 19 of 20 evaluation trials
+(95%).</p>
+<p>The video below shows all 20 trials in the order in which they were evaluated.
+No trial has been removed. Each trial begins with its recorded duration and the
+automatically determined outcome ("PICK" or "no pick"), and these outcomes agree
+with the evaluation log.</p>
+<video controls="" preload="metadata" src="assets/videos/policy_D_all_trials.mp4" width="100%"></video>
+<p>The single failure occurred with the cube at +96 mm across and 291 mm forward
+of the shoulder. Policy D issued three gripper-close commands during the trial,
+but the cube was not lifted successfully. The successful and failed examples
+discussed in the thesis are shown in more detail in the following section.</p>
+<hr/>
+<h2 id="6-selected-trials-discussed-in-the-thesis">6. Selected trials discussed in the thesis</h2>
+<p>The following trials correspond to examples discussed in the thesis figures.
+The complete videos are provided here so that the behaviour before and after
+the selected figure frames can be inspected. In the videos, the episode number
+is the trial number minus one.</p>
+
+<h3>Policy D</h3>
+
+<p><strong>Successful trial</strong> — trial 19, cube at +48 mm across and
+304 mm forward.</p>
+<video controls="" preload="metadata" src="assets/videos/final_D_trial19_success.mp4" width="100%"></video>
+
+<p><strong>Only failed trial</strong> — trial 15, cube at +96 mm across and
+291 mm forward. Three gripper-close commands were issued, but the cube never
+rose more than 5.5 mm.</p>
+<video controls="" preload="metadata" src="assets/videos/final_D_trial15_failure.mp4" width="100%"></video>
+
+<p><img alt="Policy D trial examples" src="assets/figures/policy_trials_final_D.png"/></p>
+
+<details>
+<summary><strong>Additional trial referenced in the thesis</strong></summary>
+
+<p><strong>Policy E failure</strong> — trial 5, cube at +96 mm
+across and 266 mm forward. Policy E received only the head-camera observation.
+The gripper was never commanded closed, and the cube was pushed 97 mm.</p>
+<video controls="" preload="metadata" src="assets/videos/final_E_trial5_failure.mp4" width="100%"></video>
+</details>
+<hr/>
+<h2 id="7-how-the-videos-were-made">7. How the videos were made</h2>
+<ul>
+<li><strong>Source:</strong> policy-evaluation videos are generated directly from
+the recorded episode files, including the camera frames, joint states, binary
+gripper command and cube position. The teleoperation videos combine separately
+recorded operator footage with the corresponding episode data. The
+"operator's screen" pane is re-rendered in Isaac Sim from the recorded robot
+joint states and cube position because the live viewport itself was not
+screen-recorded. The status strip beneath each video shows the measured
+gripper opening, not the binary command.</li>
+<li><strong>Teleoperation videos:</strong> the operator film and the robot recording are
+lined up by clock time, then corrected by the gripper signal both sides
+record.</li>
+<li><strong>Frame rates:</strong> demonstrations were recorded at 11.4–13.1 frames/s and
+ evaluation trials at 12.1–14.2 frames/s. Single-trial and
+demonstration videos play at their recorded rate. The all-trials videos play
+every trial at 12 frames/s, so there a trial can run up to about 15 % slow;
+the time in the strip is always the recorded time.</li>
+<li><strong>Strip under each video:</strong> the time from the start of the episode, the
+measured gripper opening (bar) and the cube's height above its starting
+position.</li>
+<li><strong>Images:</strong> the 256 × 256 camera images are enlarged ×2 with no smoothing.</li>
+</ul>
+
+ <footer class="page-footer">
+ Supporting media for an academic thesis project at Stellenbosch University.
+ </footer>
+ </main>
+</body>
+</html>
